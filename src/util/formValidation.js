@@ -1,7 +1,7 @@
 export function formValidation(event) {
     let emailReg = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     let passReg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
-    let nameReg = /^[\\p{L} .'-]+$/;
+    let nameReg = /^[a-zA-Z ]*$/;
     let mobReg = /^((\+92)|(0092))-{0,1}\d{3}-{0,1}\d{7}$|^\d{11}$|^\d{4}-\d{7}$/;
 
     let id = event.target.id;
@@ -30,7 +30,7 @@ export function formValidation(event) {
         errorMessage:"Name should be like 'John Deo'"
       }
     }
-    if(id=="mob" && nameReg.exec(value) === null){
+    if(id=="mob" && mobReg.exec(value) === null){
       return {
         isValidInput:false,
         errorMessage:"Mobile number should be like '+923049248675'"
