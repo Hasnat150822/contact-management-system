@@ -2,24 +2,22 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-// import LockOutlinedIcon from '@mui/icons-material/LockOutlined'; 
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useAuth from "../../helpers/auth/useAuth";
 import { useState } from 'react';
+import { formValidation } from '../../util/formValidation';
+import FormError from '../../helpers/FormError';
 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
+      <Link color="inherit" href="/">
         Contact Manager
       </Link>{' '}
       {new Date().getFullYear()}
@@ -30,19 +28,26 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-const Login = ()=> {
+const Login = () => {
   let navigate = useNavigate();
   let location = useLocation();
   let auth = useAuth();
-  let [[value, isValidInput, errorMessage], setFormState] = useState();
+  let [fieldId, setFieldId] = useState("");
+  let [value, setValue] = useState("");
+  let [isValidInput, setIsValidInput] = useState(true);
+  let [errorMessage, setErrorMessage] = useState("");
 
   const handleInput = (event) => {
-    // setFormState([value]=event.target.value);
-    // console.log(value, 'this is value')
+    setValue(event.target.value);
   }
 
-  const handleValidation = () => {
-
+  const handleValidation = (event) => {
+    //({isValidInput, errorMessage} = formValidation(event));
+    //above statement is equal to {a, b} = {a:10, b:20}
+    ({ isValidInput, errorMessage } = formValidation(event));
+    setIsValidInput(isValidInput)
+    setErrorMessage(errorMessage)
+    setFieldId(event.target.id);
   }
 
 
@@ -57,11 +62,28 @@ const Login = ()=> {
       email: data.get('email'),
       password: data.get('password'),
     }
-
-    auth.login(user, (data)=>{
-      console.log(data, 'returned data');
-      navigate(from, {replace:true})
+    let isValidForm = true;
+    let keys = Object.keys(user);
+    keys.forEach((key)=>{
+      if(user[key].length===0){
+        isValidForm = false;
+        return;
+      }
     })
+
+    if(!isValidForm){
+      setFieldId("submit");
+      setIsValidInput(false);
+      setErrorMessage("Please Fill the form Properly")
+    }else{
+      setFieldId("");
+      setIsValidInput(true);
+      setErrorMessage("")
+      auth.login(user, (data) => {
+        navigate(from, { replace: true })
+      })
+    }
+
   };
 
   return (
@@ -73,7 +95,7 @@ const Login = ()=> {
             marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
+            alignItems: 'center'
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -82,7 +104,7 @@ const Login = ()=> {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1, width:"500px" }}>
             <TextField
               margin="normal"
               required
@@ -91,9 +113,12 @@ const Login = ()=> {
               label="Email Address"
               name="email"
               autoComplete="email"
-              autoFocus
               onChange={handleInput}
+              onBlur={handleValidation}
             />
+            <p className={`text-danger ${fieldId==="email" ? "d-block":"d-none"}`}>
+              <FormError isHidden={isValidInput} errorMessage={errorMessage} />
+            </p>
             <TextField
               margin="normal"
               required
@@ -103,11 +128,15 @@ const Login = ()=> {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={handleInput}
+              onBlur={handleValidation}
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
+            <p className={`text-danger ${fieldId==="password" ? "d-block":"d-none"}`}>
+              <FormError isHidden={isValidInput} errorMessage={errorMessage} />
+            </p>
+            <p className={`text-danger mb-0 ${fieldId==="submit" ? "d-block":"d-none"}`}>
+              <FormError isHidden={isValidInput} errorMessage={errorMessage} />
+            </p>
             <Button
               type="submit"
               fullWidth
@@ -116,18 +145,6 @@ const Login = ()=> {
             >
               Sign In
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
           </Box>
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
