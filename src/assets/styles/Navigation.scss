@@ -1,4 +1,5 @@
-a{
+.nav-link{
+    color: unset;
     margin-right: 1rem;
     padding: 0.5rem 0.75rem 0.45rem;
     border-radius: 0.35rem;
@@ -10,13 +11,14 @@ a{
     }
 }
 
-a:hover {
-    background-color: #dbdee5;
+.nav-link:hover {
+    background-color: #dbdee5 !important;
 }
-a:active {
-    background-color: #007bff;
+.nav-link.active {
+    color: unset;
+    background-color: #007bff73;
 }
-li{
+a{
     svg {
         font-size: 1.1rem !important;
     }

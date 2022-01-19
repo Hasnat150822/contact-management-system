@@ -2,18 +2,20 @@ import { Outlet } from "react-router-dom";
 import Header from "../shared/Header";
 import Navigations from "../shared/Navigation";
 
-const MainPage = () => {
+const AuthRoutes = () => {
 
     return (
         <>
             <Header />
             <main>
                 <Navigations />
-                <Outlet />
+                <article className="mt-3">
+                    <Outlet />
+                </article>
             </main>
         </>
     )
 
 }
 
-export default MainPage;
+export default AuthRoutes;

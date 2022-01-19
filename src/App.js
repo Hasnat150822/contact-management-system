@@ -6,6 +6,7 @@ import RequireAuth from './helpers/auth/RequireAuth';
 import Dashboard from './pages/Dashboard';
 import NotFound from './pages/NotFound';
 import MainPage from './pages/MainPage';
+import authRoutes from './routes/authRoutes';
 
 function App() {
   return (
@@ -17,8 +18,7 @@ function App() {
             <MainPage />
           </RequireAuth>
         }>
-          <Route path="/" element={<Navigate to="/dashboard" />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          {authRoutes}
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

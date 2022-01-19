@@ -1,28 +1,25 @@
-import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
-import PermContactCalendarOutlinedIcon from '@mui/icons-material/PermContactCalendarOutlined';
+import { Link, useLocation } from "react-router-dom";
 import "../assets/styles/Navigation.scss";
-let navArray = [
-    {
-        path:"", title:"", icon:"", class:""
-    }
-];
+import { navLists } from '../util/navBarOptions';
+
+let changeActive = (event) => {
+    let activeElement = document.querySelector("a.active");
+    activeElement.classList.remove("active");
+    event.currentTarget.classList.add("active");
+}
 
 const Navigations = () => {
+    const location = useLocation();
+    let listItems = navLists.map((item, index) => {
+        return <Link key={index} className={`nav-link ${location.pathname === item.path?"active":" "}`} to={item.path} onClick={changeActive}>
+            {item.icon}
+            <span>{item.title}</span>
+        </Link>
+    })
     return (
-        <ul className="list-unstyled mt-3 d-flex">
-            <li>
-                <a>
-                    <DashboardOutlinedIcon />
-                    <span>Dashboard</span>
-                </a>
-            </li>
-            <li>
-                <a>
-                    <PermContactCalendarOutlinedIcon />
-                    <span>Contacts</span>
-                </a>
-            </li>
-        </ul>
+        <nav className="nav mt-2">
+            {listItems}
+        </nav>
     )
 }
 
