@@ -1,24 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+import { Routes, Route, Navigate } from "react-router-dom"
+import Login from './pages/public/Login';
+import AuthContextProvider from './helpers/auth/AuthContextProvider';
+import RequireAuth from './helpers/auth/RequireAuth';
+import Dashboard from './pages/Dashboard';
+import NotFound from './pages/NotFound';
+import MainPage from './pages/MainPage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthContextProvider>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/" element={
+          <RequireAuth>
+            <MainPage />
+          </RequireAuth>
+        }>
+          <Route path="/" element={<Navigate to="/dashboard" />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </AuthContextProvider>
   );
 }
 

@@ -1,0 +1,23 @@
+a{
+    margin-right: 1rem;
+    padding: 0.5rem 0.75rem 0.45rem;
+    border-radius: 0.35rem;
+    cursor: pointer;
+    span{
+        margin-left: .3rem;
+        font-size: 15px;
+        font-weight: 500;
+    }
+}
+
+a:hover {
+    background-color: #dbdee5;
+}
+a:active {
+    background-color: #007bff;
+}
+li{
+    svg {
+        font-size: 1.1rem !important;
+    }
+}
