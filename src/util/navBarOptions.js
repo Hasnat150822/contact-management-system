@@ -1,7 +1,6 @@
 import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
 import PermContactCalendarOutlinedIcon from '@mui/icons-material/PermContactCalendarOutlined';
 import AddIcCallOutlinedIcon from '@mui/icons-material/AddIcCallOutlined';
-import UpdateOutlinedIcon from '@mui/icons-material/UpdateOutlined';
 
 export const navLists = [
     { path: "/dashboard", title: "Dashboard", icon: <DashboardOutlinedIcon />, has_sub: false, subMenu: [] },

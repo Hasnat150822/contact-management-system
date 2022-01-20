@@ -4,8 +4,12 @@ import { navLists } from '../util/navBarOptions';
 
 let changeActive = (event) => {
     let activeElement = document.querySelector("a.active");
-    activeElement.classList.remove("active");
-    event.currentTarget.classList.add("active");
+    if(activeElement!==null){
+        activeElement.classList.remove("active");
+    }
+    if(event.currentTarget!==null){
+        event.currentTarget.classList.add("active");
+    }
 }
 
 const Navigations = () => {
