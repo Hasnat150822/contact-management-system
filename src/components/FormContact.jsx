@@ -2,16 +2,31 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import { useLocation, useNavigate } from 'react-router-dom';
-import {useState } from 'react';
+import {useEffect, useState } from 'react';
 import { formValidation } from '../util/formValidation';
 import FormError from '../helpers/FormError';
 
 const FormContact = (props) => {
+  let navigate = useNavigate();
   let location = useLocation();
   let [fieldId, setFieldId] = useState("");
   let [isValidInput, setIsValidInput] = useState(true);
   let [errorMessage, setErrorMessage] = useState("");
+  let [name, setName] = useState(props?.contact?.name || "");
+  let [mob, setMob] = useState(props?.contact?.mob || "");
+  let [address, setAddress] = useState(props?.contact?.address || "");
   const handleInput = (event) => {
+    switch (event.target.id) {
+      case "name":
+        setName(event.target.value);
+        break;
+      case "mob":
+        setMob(event.target.value);
+        break;
+      case "address":
+        setAddress(event.target.value);
+        break;
+    }
   }
 
   const handleValidation = (event) => {
@@ -78,7 +93,7 @@ const FormContact = (props) => {
           onChange={handleInput}
           onBlur={handleValidation}
           InputLabelProps={{ shrink: true }}
-          value={props?.contact?.name || ""}
+          value={name}
         />
         <p className={`text-danger ${fieldId === "name" ? "d-block" : "d-none"}`}>
           <FormError isHidden={isValidInput} errorMessage={errorMessage} />
@@ -94,7 +109,7 @@ const FormContact = (props) => {
           onChange={handleInput}
           onBlur={handleValidation}
           InputLabelProps={{ shrink: true }}
-          value={props?.contact?.mob || ""}
+          value={mob}
         />
         <p className={`text-danger ${fieldId === "mob" ? "d-block" : "d-none"}`}>
           <FormError isHidden={isValidInput} errorMessage={errorMessage} />
@@ -110,7 +125,7 @@ const FormContact = (props) => {
           onChange={handleInput}
           onBlur={handleValidation}
           InputLabelProps={{ shrink: true }}
-          value={props?.contact?.address || ""}
+          value={address}
         />
         <p className={`text-danger ${fieldId === "address" ? "d-block" : "d-none"}`}>
           <FormError isHidden={isValidInput} errorMessage={errorMessage} />
