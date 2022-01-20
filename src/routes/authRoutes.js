@@ -9,5 +9,5 @@ export default [
     <Route path="/dashboard" element={<Dashboard />} key="dashboard" />,
     <Route path="/contacts" element={<ContactList />} key="contact" />,
     <Route path="/addContact" element={<AddContact />} key="addContact" />,
-    <Route path="/updateContact" element={<UpdateContact />} key="updateContact" />
+    <Route path="/updateContact/:id" element={<UpdateContact />} key="updateContact" />
 ]

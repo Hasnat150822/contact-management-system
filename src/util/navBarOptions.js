@@ -6,6 +6,5 @@ import UpdateOutlinedIcon from '@mui/icons-material/UpdateOutlined';
 export const navLists = [
     { path: "/dashboard", title: "Dashboard", icon: <DashboardOutlinedIcon />, has_sub: false, subMenu: [] },
     { path: "/contacts", title: "View Contacts", icon: <PermContactCalendarOutlinedIcon />, has_sub: false, subMenu: [] },
-    { path: "/addContact", title: "Add Contacts", icon: <AddIcCallOutlinedIcon />, has_sub: false, subMenu: [] },
-    { path: "/updateContact", title: "Update Contacts", icon: <UpdateOutlinedIcon />, has_sub: false, subMenu: [] },
+    { path: "/addContact", title: "Add Contacts", icon: <AddIcCallOutlinedIcon />, has_sub: false, subMenu: [] }
 ]
