@@ -12,3 +12,10 @@ export const updateContact = (contact, id) => {
         id
     }
 }
+
+export const deleteContact = (id) => {
+    return {
+        type:'DELETE_CONTACT',
+        id
+    }
+}

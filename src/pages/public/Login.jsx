@@ -8,10 +8,10 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useLocation, useNavigate } from 'react-router-dom';
-import useAuth from "../../helpers/auth/useAuth";
+import useAuth from "../../auth/useAuth";
 import { useState } from 'react';
 import { formValidation } from '../../util/formValidation';
-import FormError from '../../helpers/FormError';
+import FormError from '../../components/FormError';
 
 function Copyright(props) {
   return (
