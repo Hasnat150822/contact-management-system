@@ -1,6 +1,5 @@
-import initialState from "./state";
-
-const contactReducer = (state = initialState, action) => {
+import states from "../states";
+const contactReducer = (state = states.contactState, action) => {
     switch (action.type) {
         case "ADD_CONTACT":
             return { contacts: [...state.contacts, action.contact] }

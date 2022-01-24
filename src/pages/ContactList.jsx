@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux"
+import { connect, useSelector } from "react-redux"
 import { allContacts } from "../store/contact-manager/selectors";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -37,4 +37,10 @@ const ContactList = () => {
     )
 }
 
-export default ContactList;
+const mapStatetoProps = (state) => {
+    return {
+        contacts:state.contacts
+    }
+}
+
+export default  connect(mapStatetoProps, null)(ContactList);

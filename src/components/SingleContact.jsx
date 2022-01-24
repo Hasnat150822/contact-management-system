@@ -3,10 +3,16 @@ import TableCell from '@mui/material/TableCell';
 import ReplayCircleFilledOutlinedIcon from '@mui/icons-material/ReplayCircleFilledOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import { useNavigate } from 'react-router-dom';
-const SingleContact = ({ data, id }) => {
+import { deleteContact } from "../store/contact-manager/actions";
+import { connect } from 'react-redux';
+
+const SingleContact = ({ data, deleteContact, id }) => {
     let navigate = useNavigate();
     const updateContact = () => {
         navigate('/updateContact/'+id);
+    }
+    const delContact = () => {
+        deleteContact(id)
     }
     return (
         <TableRow
@@ -16,10 +22,16 @@ const SingleContact = ({ data, id }) => {
             <TableCell align="center">{data.address}</TableCell>
             <TableCell align="center">
                 <ReplayCircleFilledOutlinedIcon onClick={updateContact} sx={{cursor:"pointer"}} />
-                <DeleteOutlineOutlinedIcon sx={{cursor:"pointer"}}/>
+                <DeleteOutlineOutlinedIcon onClick={delContact} sx={{cursor:"pointer"}}/>
             </TableCell>
         </TableRow>
     )
 }
 
-export default SingleContact;
+const mapDispatchtoProps = (dispatch) => {
+    return {
+        deleteContact: (id) => dispatch(deleteContact(id))
+    }
+}
+
+export default connect(null, mapDispatchtoProps)(SingleContact);

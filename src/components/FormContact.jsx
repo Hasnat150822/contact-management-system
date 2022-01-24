@@ -2,9 +2,9 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import { useLocation, useNavigate } from 'react-router-dom';
-import {useEffect, useState } from 'react';
+import { useState } from 'react';
 import { formValidation } from '../util/formValidation';
-import FormError from '../helpers/FormError';
+import FormError from './FormError';
 
 const FormContact = (props) => {
   let navigate = useNavigate();

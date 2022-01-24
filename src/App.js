@@ -1,8 +1,8 @@
 import './App.css';
 import { Routes, Route } from "react-router-dom"
 import Login from './pages/public/Login';
-import AuthContextProvider from './helpers/auth/AuthContextProvider';
-import RequireAuth from './helpers/auth/RequireAuth';
+import AuthContextProvider from './auth/AuthContextProvider';
+import RequireAuth from './auth/RequireAuth';
 import NotFound from './pages/NotFound';
 import MainPage from './pages/MainPage';
 import authRoutes from './routes/authRoutes';
