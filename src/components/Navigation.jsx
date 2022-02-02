@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import "../assets/styles/Navigation.scss";
-import { navLists } from '../util/navBarOptions';
+import { navLists } from '../utils/navBarOptions';
 
 let changeActive = (event) => {
     let activeElement = document.querySelector("a.active");

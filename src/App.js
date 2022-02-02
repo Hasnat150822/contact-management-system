@@ -1,27 +1,18 @@
+import { useDispatch } from 'react-redux';
 import './App.css';
-import { Routes, Route } from "react-router-dom"
-import Login from './pages/public/Login';
-import AuthContextProvider from './auth/AuthContextProvider';
-import RequireAuth from './auth/RequireAuth';
-import NotFound from './pages/NotFound';
-import MainPage from './pages/MainPage';
-import authRoutes from './routes/authRoutes';
+import MainRoutes from './routes/mainRoutes';
+import { isAuthenticated } from './store/actions';
 
 function App() {
+  let dispatch = useDispatch();
+  let token = localStorage.getItem("token");
+  if(token){
+    dispatch(isAuthenticated(true))
+  }else{
+    dispatch(isAuthenticated(false))
+  }
   return (
-    <AuthContextProvider>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/" element={
-          <RequireAuth>
-            <MainPage />
-          </RequireAuth>
-        }>
-          {authRoutes}
-        </Route>
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </AuthContextProvider>
+    <MainRoutes />
   );
 }
 

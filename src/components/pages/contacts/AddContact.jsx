@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import FormContact from '../components/FormContact';
-import {addContact} from '../store/contact-manager/actions';
+import FormContact from '../../FormContact';
+import {addContact} from '../../../store/actions';
 
 const AddContact = ({addContact}) => {
     let navigate = useNavigate();

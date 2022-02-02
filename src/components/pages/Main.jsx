@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
-import Header from "../shared/Header";
-import Navigations from "../shared/Navigation";
+import Header from "../Header";
+import Navigations from "../Navigation";
 
-const AuthRoutes = () => {
+const Main = () => {
 
     return (
         <>
@@ -18,4 +18,4 @@ const AuthRoutes = () => {
 
 }
 
-export default AuthRoutes;
+export default Main;

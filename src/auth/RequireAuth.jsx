@@ -1,13 +1,15 @@
+import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
+import { isAuthenticated } from "../store/selectors";
 
-let RequireAuth = ({children}) => {
+let RequireAuth = ({component:Component}) => {
     let location = useLocation();
-    let token = localStorage.getItem("token");
-    if(!token) {
+    let isAuth = useSelector((state)=>isAuthenticated(state));
+    if(!isAuth) {
         return <Navigate to="/login" state={{ from: location }} replace />
     }
 
-    return children;
+    return <Component />;
 }
 
 export default RequireAuth;

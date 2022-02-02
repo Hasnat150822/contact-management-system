@@ -1,13 +1,12 @@
 import { connect } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
-import FormContact from '../components/FormContact';
-import {updateContact} from "../store/contact-manager/actions"
+import FormContact from '../../FormContact';
+import {updateContact} from "../../../store/actions"
 
 const UpdateContact = ({contacts, updateContact}) => {
     let param = useParams();
     let navigate = useNavigate();
     let handleSubmit = (contact) => {
-        // console.log(payload, 'this is payload')
         updateContact(contact, param.id);
         navigate("/contacts")
     } 
@@ -23,7 +22,7 @@ const UpdateContact = ({contacts, updateContact}) => {
 
 const matchStatetoProps =  (state) => {
     return {
-        contacts:state.contacts
+        contacts:state.contactReducer.contacts
     }
 }
 

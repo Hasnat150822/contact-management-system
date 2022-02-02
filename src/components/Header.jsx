@@ -8,11 +8,15 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { signOut } from '../store/actions';
+import AuthService from '../auth';
 
 const settings = ['Profile', 'Logout'];
 
 const Header = () => {
   const navigate = useNavigate();
+  let dispatch = useDispatch();
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenUserMenu = (event) => {
@@ -21,7 +25,8 @@ const Header = () => {
 
   const handleCloseUserMenu = (param) => {
     if(param.target.innerText==="Logout"){
-      localStorage.clear();
+      dispatch(signOut());
+      AuthService.signOut();
       navigate("/")
     }
     setAnchorElUser(null);

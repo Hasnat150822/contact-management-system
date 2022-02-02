@@ -3,7 +3,7 @@ import TableCell from '@mui/material/TableCell';
 import ReplayCircleFilledOutlinedIcon from '@mui/icons-material/ReplayCircleFilledOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import { useNavigate } from 'react-router-dom';
-import { deleteContact } from "../store/contact-manager/actions";
+import { deleteContact } from "../store/actions";
 import { connect } from 'react-redux';
 
 const SingleContact = ({ data, deleteContact, id }) => {

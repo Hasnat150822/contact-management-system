@@ -8,10 +8,12 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useLocation, useNavigate } from 'react-router-dom';
-import useAuth from "../../auth/useAuth";
 import { useState } from 'react';
-import { formValidation } from '../../util/formValidation';
-import FormError from '../../components/FormError';
+import { formValidation } from '../../utils/formValidation';
+import FormError from '../FormError';
+import AuthService from '../../auth';
+import { useDispatch } from 'react-redux';
+import { signIn } from '../../store/actions';
 
 function Copyright(props) {
   return (
@@ -31,7 +33,7 @@ const theme = createTheme();
 const Login = () => {
   let navigate = useNavigate();
   let location = useLocation();
-  let auth = useAuth();
+  let dispatch = useDispatch();
   let [fieldId, setFieldId] = useState("");
   let [value, setValue] = useState("");
   let [isValidInput, setIsValidInput] = useState(true);
@@ -79,7 +81,8 @@ const Login = () => {
       setFieldId("");
       setIsValidInput(true);
       setErrorMessage("")
-      auth.login(user, (data) => {
+      AuthService.signIn(user, (data) => {
+        dispatch(signIn(user));
         navigate(from, { replace: true })
       })
     }
