@@ -6,6 +6,7 @@ import { isAuthenticated } from './store/actions';
 function App() {
   let dispatch = useDispatch();
   let token = localStorage.getItem("token");
+  //another line for testing
   if(token){
     dispatch(isAuthenticated(true))
   }else{
