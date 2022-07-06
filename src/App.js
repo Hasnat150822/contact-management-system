@@ -4,6 +4,7 @@ import MainRoutes from './routes/mainRoutes';
 import { isAuthenticated } from './store/actions';
 
 function App() {
+  //just for testing writing this comment
   let dispatch = useDispatch();
   let token = localStorage.getItem("token");
   if(token){
