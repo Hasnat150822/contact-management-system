@@ -1,10 +1,10 @@
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
-import ReplayCircleFilledOutlinedIcon from '@mui/icons-material/ReplayCircleFilledOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import { useNavigate } from 'react-router-dom';
 import { deleteContact } from "../store/actions";
 import { connect } from 'react-redux';
+import { EditOutlined } from '@mui/icons-material';
 
 const TableItem = ({ data, deleteContact, id, component }) => {
     let navigate = useNavigate();
@@ -46,7 +46,7 @@ const TableItem = ({ data, deleteContact, id, component }) => {
                 {data.address}
             </TableCell>
             <TableCell align="center" sx={{display: component=='Contacts'?'block':'none'}}>
-                <ReplayCircleFilledOutlinedIcon onClick={updateContact} sx={{ cursor: "pointer" }} />
+                <EditOutlined onClick={updateContact} sx={{ cursor: "pointer" }} />
                 <DeleteOutlineOutlinedIcon onClick={delContact} sx={{ cursor: "pointer" }} />
             </TableCell>
         </TableRow>

@@ -7,5 +7,6 @@ export const navLists = [
     { path: "/dashboard", title: "Dashboard", icon: <DashboardOutlinedIcon />, has_sub: false, subMenu: [] },
     { path: "/contacts", title: "View Contacts", icon: <PermContactCalendarOutlinedIcon />, has_sub: false, subMenu: [] },
     { path: "/addContact", title: "Add Contacts", icon: <AddIcCallOutlinedIcon />, has_sub: false, subMenu: [] },
-    { path: "/posts", title: "Posts", icon: <BookOutlinedIcon />, has_sub: false, subMenu: [] }
+    { path: "/posts", title: "Posts", icon: <BookOutlinedIcon />, has_sub: false, subMenu: [] },
+    { path: "/autoCorrect", title: "Auto Correction", icon: <BookOutlinedIcon />, has_sub: false, subMenu: [] }
 ]

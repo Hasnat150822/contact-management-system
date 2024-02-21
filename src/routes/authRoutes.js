@@ -4,6 +4,7 @@ import Contacts from "../components/pages/contacts/Contacts";
 import Dashboard from "../components/pages/Dashboard";
 import UpdateContact from "../components/pages/contacts/UpdateContact";
 import Posts from "../components/pages/posts/Posts";
+import AutoCorrection from "../components/pages/hackerRank/AutoCorrection";
 
 export default [
     <Route path="/" element={<Navigate to="/dashboard" />} key="default" />,
@@ -11,5 +12,6 @@ export default [
     <Route path="/contacts" element={<Contacts />} key="contacts" />,
     <Route path="/addContact" element={<AddContact />} key="addContact" />,
     <Route path="/updateContact/:id" element={<UpdateContact />} key="updateContact" />,
-    <Route path="/posts" element={<Posts />} key="posts" />
+    <Route path="/posts" element={<Posts />} key="posts" />,
+    <Route path="/autoCorrect" element={<AutoCorrection />} key="autoCorrect" />
 ]
