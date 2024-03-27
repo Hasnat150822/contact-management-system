@@ -5,6 +5,7 @@ import Dashboard from "../components/pages/Dashboard";
 import UpdateContact from "../components/pages/contacts/UpdateContact";
 import Posts from "../components/pages/posts/Posts";
 import AutoCorrection from "../components/pages/hackerRank/AutoCorrection";
+import SpeechToText from "../components/pages/SpeechToText";
 
 export default [
     <Route path="/" element={<Navigate to="/dashboard" />} key="default" />,
@@ -13,5 +14,6 @@ export default [
     <Route path="/addContact" element={<AddContact />} key="addContact" />,
     <Route path="/updateContact/:id" element={<UpdateContact />} key="updateContact" />,
     <Route path="/posts" element={<Posts />} key="posts" />,
-    <Route path="/autoCorrect" element={<AutoCorrection />} key="autoCorrect" />
+    <Route path="/autoCorrect" element={<AutoCorrection />} key="autoCorrect" />,
+    <Route path="/aws" element={<SpeechToText />} key="speechToText" />
 ]
